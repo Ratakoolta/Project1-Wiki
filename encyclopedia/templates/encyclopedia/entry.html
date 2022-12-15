@@ -1,0 +1,11 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia - {{titulo.capitalize}}
+{% endblock %}
+
+{% block body %}
+
+    {{contenido | safe}}
+
+{% endblock %}
