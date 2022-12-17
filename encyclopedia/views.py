@@ -17,11 +17,30 @@ def index(request):
     })
 
 def entry(request, title):
-    html_content = transl_md_html(title)
-    if html_content == None:
+    content = transl_md_html(title)
+    if content == None:
         return render(request, "encyclopedia/null.html")
     else: 
         return render(request, "encyclopedia/entry.html", {
             "titulo": title,
-            "contenido": html_content
+            "contenido": content
         })
+
+def search(request):
+    if request.method == "POST":
+        busqueda = request.POST['q']
+        content = transl_md_html(busqueda)
+        if content is not None:
+            return render(request, "encyclopedia/entry.html", {
+            "titulo": busqueda,
+            "contenido": content
+            })
+        else:
+            directorio = util.list_entries()
+            resultado = []
+            for entry in directorio:
+                if busqueda.lower() in entry.lower():
+                    resultado.append(entry)
+            return render(request, "encyclopedia/busqueda.html", {
+                "resultado" : resultado
+            })
