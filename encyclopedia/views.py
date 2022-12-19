@@ -44,3 +44,20 @@ def search(request):
             return render(request, "encyclopedia/busqueda.html", {
                 "resultado" : resultado
             })
+
+def add_article(request):
+    if request.method == "GET":
+        return render(request, "encyclopedia/add.html")
+    else:
+        title = request.POST['titulo']
+        content = request.POST['contenido']
+        article_exist = util.get_entry(title)
+        if article_exist is not None:
+            return render(request, "encyclopedia/exists.html")
+        else:
+            util.save_entry(title, content)
+            content = transl_md_html(title)
+        return render(request, "encyclopedia/entry.html", {
+            "titulo": title,
+            "contenido": content
+        })

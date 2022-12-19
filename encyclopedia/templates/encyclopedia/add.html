@@ -1,0 +1,21 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia - Nuevo Articulo
+{% endblock %}
+
+{% block body %}
+    <h1>Nuevo Articulo</h1>
+        <br>
+    <form href="{% url 'add_article' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="titulo" placeholder="Nombre de la Receta"> 
+        <br><br>
+        <label>Ingrese Contenido</label>
+        <br>
+        <textarea name="contenido" rows="2" cols="20" placeholder="Describa la Receta"></textarea>
+        <br> 
+        <input type="submit" value="Agregar Receta">
+    </form> 
+
+{% endblock %}

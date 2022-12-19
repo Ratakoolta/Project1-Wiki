@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block body %}
-
-    {{contenido | safe}}
+    <h1>{{ titulo | safe}}</h1>
+    {{ contenido | safe}}
 
     <a href="{% url 'index' %}">Home</a>
 
