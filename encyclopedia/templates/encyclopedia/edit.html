@@ -1,0 +1,21 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia - Editar Receta
+{% endblock %}
+
+{% block body %}
+    <h1>Editar Receta</h1>
+        <br>
+    <form action="{% url 'save_edit' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="titulo" placeholder="Nombre de la Receta" value="{{ titulo }}"> 
+        <br><br>
+        <label>Ingrese Contenido</label>
+        <br>
+        <textarea name="contenido" placeholder="Describa la Receta">{{ articulo }}</textarea>
+        <br>
+        <input type="submit" value="Editar Receta">
+    </form> 
+
+{% endblock %}

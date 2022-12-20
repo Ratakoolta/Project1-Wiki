@@ -61,3 +61,23 @@ def add_article(request):
             "titulo": title,
             "contenido": content
         })
+
+def edit_article(request):
+    if request.method == "POST":
+        title = request.POST['article']
+        content = util.get_entry(title)
+        return render(request, "encyclopedia/edit.html", {
+          "titulo": title,
+          "articulo": content
+        })
+
+def save_edit(request):
+    if request.method == "POST":
+        title = request.POST['titulo']
+        content = request.POST['contenido']
+        util.save_entry(title, content)
+        content = transl_md_html(title)
+        return render(request, "encyclopedia/entry.html", {
+            "titulo": title,
+            "contenido": content
+        })
