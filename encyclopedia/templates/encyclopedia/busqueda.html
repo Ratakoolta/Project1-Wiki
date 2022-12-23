@@ -6,11 +6,15 @@
 
 {% block body %}
     <h1>Directorio</h1>
-
+    <br>
+    <h4>¡La receta que buscas no esta creada! 
+        <br>
+        <br>Tal vez estés buscando:</h4>
     <ul>
         {% for entry in resultado %}
             <li><a href="{% url 'entry' title=entry %}"> {{ entry }} </a></li>
         {% endfor %}
     </ul>
+    <h5>Si consideras que este artículo debería existir, puedes ayudarnos a crearlo</h5>
 
 {% endblock %}
